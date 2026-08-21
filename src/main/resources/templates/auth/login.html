@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập - Food Shop</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+            transition: transform 0.3s ease;
+        }
+        .login-card:hover {
+            transform: translateY(-5px);
+        }
+        .login-title {
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .form-control {
+            padding: 12px;
+            border-radius: 8px;
+        }
+        .form-control:focus {
+            box-shadow: 0 0 0 0.25rem rgba(253, 126, 20, 0.25);
+            border-color: #fd7e14;
+        }
+        .btn-primary {
+            background-color: #fd7e14;
+            border-color: #fd7e14;
+            padding: 12px;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: #e86e0c;
+            border-color: #e86e0c;
+            transform: scale(1.02);
+        }
+        .alert {
+            font-size: 0.9rem;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <h2 class="login-title">🍕 Food Shop</h2>
+        <p class="text-center text-muted mb-4">Vui lòng đăng nhập để tiếp tục</p>
+        
+        <!-- Thông báo lỗi khi sai tài khoản/mật khẩu -->
+        <div th:if="${param.error}" class="alert alert-danger text-center" role="alert">
+            Tên đăng nhập hoặc mật khẩu không hợp lệ!
+        </div>
+        
+        <!-- Thông báo khi đăng xuất -->
+        <div th:if="${param.logout}" class="alert alert-success text-center" role="alert">
+            Bạn đã đăng xuất thành công.
+        </div>
+
+        <form th:action="@{/login}" method="post">
+            <div class="mb-3">
+                <label for="username" class="form-label text-muted fw-semibold">Tên đăng nhập</label>
+                <input type="text" class="form-control" id="username" name="username" placeholder="Nhập tên đăng nhập" required autofocus>
+            </div>
+            
+            <div class="mb-4">
+                <label for="password" class="form-label text-muted fw-semibold">Mật khẩu</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Nhập mật khẩu" required>
+            </div>
+            
+            <button type="submit" class="btn btn-primary w-100">Đăng Nhập</button>
+        </form>
+    </div>
+
+</body>
+</html>
